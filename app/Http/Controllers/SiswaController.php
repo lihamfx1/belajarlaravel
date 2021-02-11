@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Siswa;
 
-class SiswaController extends Controller
+class siswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,10 @@ class SiswaController extends Controller
      */
     public function index()
     {
+       
         $siswa = Siswa::all();
         return view('siswa.index', compact('siswa'));
+
     }
 
     /**
@@ -25,7 +27,10 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa.tambah_siswa');        
+        // untuk menampilkan form tambah data siswa
+        
+        return view('siswa.tambah_siswa');
+
     }
 
     /**
@@ -36,16 +41,16 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // $siswa = new Siswa();
-        // $siswa->nisn =$request->nisn;
-        // $siswa->nama =$request->nama;
-        // $siswa->alamat =$request->alamat; 
-        // $siswa->save();       
-        
-        Siswa::create($request->all());
 
-        return redirect('siswa')->with('status', 'Profile updated!');
+        // $validatedStore = $request->validate([
+        //     'nisn' => 'required|numeric|digits:10',
+        //     'nama' => 'required|max:255',
+        //     'alamat' => 'required|max:255',
+        // ]);
+
+        Siswa::create($request->all());
+        return redirect()->route('siswa.index')->with('alert', 'Data Siswa ' . $request->nama . ' berhasil ditambahkan!');
+    
     }
 
     /**
@@ -67,7 +72,10 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $Siswa = Siswa::find($id);
+        return view('siswa.edit', compact('Siswa'));
+
     }
 
     /**
@@ -79,7 +87,16 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // $validatedStore = $request->validate([
+        //     'nisn' => 'required|numeric|digits:10',
+        //     'nama' => 'required|max:255',
+        //     'alamat' => 'required|max:255',
+        // ]);
+
+        Siswa::updateOrCreate(['id' => $id], request()->all());
+        return redirect()->route('siswa.index')->with('alert', 'Data Siswa ' . $request->nama . ' berhasil diedit!');
+
     }
 
     /**
@@ -90,6 +107,11 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $siswa = Siswa::find($id);
+        $siswa->delete();
+
+        return redirect()->route('siswa.index')->with('alert', 'Data berhasil dihapus!');
+
     }
 }

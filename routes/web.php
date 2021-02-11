@@ -25,4 +25,14 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::resource('siswa', 'SiswaController');
+//Akses contoller
+// Route::get('siswa', 'SiswaController@index');
+// Route::get('siswa/tambah','SiswaController@create');
+// Route::post('siswa', 'SiswaController@store');
+// Route::resource('siswa', 'SiswaController');
+Route::resource('/siswa', 'SiswaController');
+
+
+//Update
+Route::post('/siswa/{id}/update/', 'SiswaController@update')->name('update');
+Route::get('/siswa/{id}/destroy/', 'SiswaController@destroy')->name('delete');
