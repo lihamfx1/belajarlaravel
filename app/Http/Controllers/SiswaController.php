@@ -41,12 +41,17 @@ class siswaController extends Controller
      */
     public function store(Request $request)
     {
+         $message= [
+            'required'  => 'Pastikan data telah diisi',
+            'digits'    => 'Pastikan angka terisi 8 digit',
+            'max'       => 'Pastikan karakter/huruf tidak lebih dari 30'
+        ];
 
-        // $validatedStore = $request->validate([
-        //     'nisn' => 'required|numeric|digits:10',
-        //     'nama' => 'required|max:255',
-        //     'alamat' => 'required|max:255',
-        // ]);
+        $validatedSiswa = $request->validate([
+            'nisn'      => 'required|numeric|digits:8',
+            'nama'      => 'required|max:30',
+            'alamat'    => 'required|max:50'
+        ], $message);
 
         Siswa::create($request->all());
         return redirect()->route('siswa.index')->with('alert', 'Data Siswa ' . $request->nama . ' berhasil ditambahkan!');
@@ -87,13 +92,17 @@ class siswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $message= [
+        //     'required'  => 'Pastikan data telah diisi',
+        //     'digits'    => 'Pastikan angka terisi 8 digit',
+        //     'max'       => 'Pastikan karakter/huruf tidak lebih dari 30'
+        // ];
 
-        // $validatedStore = $request->validate([
-        //     'nisn' => 'required|numeric|digits:10',
-        //     'nama' => 'required|max:255',
-        //     'alamat' => 'required|max:255',
-        // ]);
-
+        $validatedSiswa = $request->validate([
+            'nisn'      => 'required|numeric|digits:8',
+            'nama'      => 'required|max:30',
+            'alamat'    => 'required|max:50'
+        ]);
         Siswa::updateOrCreate(['id' => $id], request()->all());
         return redirect()->route('siswa.index')->with('alert', 'Data Siswa ' . $request->nama . ' berhasil diedit!');
 
