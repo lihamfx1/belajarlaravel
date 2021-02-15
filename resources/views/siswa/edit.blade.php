@@ -8,15 +8,19 @@
         <h1 class="text-center">Edit Siswa</h1>
     </div>
         <form method="post" action="{{ route('update', $Siswa->id) }}">
-            
             @csrf
             <div class="form-group">
                 <label for="InputNISN">NISN</label>
                 <input type="number" name="nisn" class="form-control" id="InputNISN" value="{{ $Siswa->nisn }}" placeholder="Enter NISN" autofocus>
-            </div>
+                @error('nisn')
+                    <div class="small text-danger">{{ $message }}</div>                  
+                @enderror
             <div class="form-group">
                 <label for="InputNama">Nama</label>
                 <input type="text" name="nama" class="form-control" id="InputNama" value="{{ $Siswa->nama }}" placeholder="Enter Nama">
+                @error('nama')
+                    <div class="small text-danger">{{ $message }}</div>                  
+                @enderror            
             </div>
             <div class="form-group">
                 <label for="InputAlamat">Alamat</label>

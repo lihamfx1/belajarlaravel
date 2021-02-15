@@ -38,6 +38,11 @@
     </div>
 </div>
 @endsection
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 {{-- <div class="container" style="margin-top: 20px;">
     <div class="col-md-12 mb-3">
         <h1 class="text-center">Data Siswa</h1>
@@ -67,11 +72,7 @@
         </tbody>
     </table>
     </div> --}}
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
+
 {{-- <div class="card mt-3">
     <div class="card-body">
         <h5>List Siswa</h5>
