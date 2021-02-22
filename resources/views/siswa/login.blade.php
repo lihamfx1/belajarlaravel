@@ -6,7 +6,7 @@
     <div class="col-md-12 mb-3">
         <h1 class="text-center">Tambah Data Siswa</h1>
     </div>
-    <form method="post" action="/siswa">
+    <form method="post" action="{{ route('postLogin') }}">
         @csrf
           <div class="form-group">
             <label for="inputEmail">Email</label>

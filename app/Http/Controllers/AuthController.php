@@ -23,7 +23,15 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
+    public function postlogin(Request $request)
+    {
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return redirect(route('about'));
+        }
+            
+        return redirect()->back();
+        
+    }
 
     /**
      * Store a newly created resource in storage.

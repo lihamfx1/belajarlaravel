@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 
 Route::get('/login', 'AuthController@login')->name('login');
+Route::post('/login', 'AuthController@postlogin')->name('postLogin');
 // Route::resource('siswa', 'SiswaController');
 
 Route::post('/siswa/{id}/update', 'SiswaController@update')->name('update');
