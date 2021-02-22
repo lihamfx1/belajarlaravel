@@ -7,10 +7,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link dark" href="\">Home</a>
+        <a class="nav-link dark" href="{{ route('home') }}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="\about">About</a>
+        <a class="nav-link" href="{{ route('about') }}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/siswa/view">Data Siswa</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/siswa">Input Data</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('login') }}">Login</a>
       </li>
     </ul>
   </div>

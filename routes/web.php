@@ -15,24 +15,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('');
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/about', function () {
     return view('about');
+})->name('about');
+
+Route::group(['middleware' => 'auth'], function(){
+
+    //Akses contoller
+    Route::get('/siswa/view', 'SiswaController@index')->name('viewData');
+    Route::get('/siswa','SiswaController@create');
+    Route::get('/siswa/{id}/edit', 'SiswaController@edit');
+    Route::post('/siswa', 'SiswaController@store');
 });
 
-//Akses contoller
-// Route::get('siswa', 'SiswaController@index');
-// Route::get('siswa/tambah','SiswaController@create');
-// Route::post('siswa', 'SiswaController@store');
+
+Route::get('/login', 'AuthController@login')->name('login');
 // Route::resource('siswa', 'SiswaController');
-Route::resource('/siswa', 'SiswaController');
 
-
-//Update
-Route::post('/siswa/{id}/update/', 'SiswaController@update')->name('update');
-Route::get('/siswa/{id}/destroy/', 'SiswaController@destroy')->name('delete');
+Route::post('/siswa/{id}/update', 'SiswaController@update')->name('update');
+Route::get('/siswa/{id}/destroy', 'SiswaController@destroy')->name('delete');

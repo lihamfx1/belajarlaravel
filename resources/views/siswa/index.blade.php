@@ -7,7 +7,7 @@
         <h1 class="text-center">Data Siswa</h1>
     </div>
     <div class="row">
-        <a href="/siswa/create">Tambah Siswa</a>
+        <a href="/siswa">Tambah Siswa</a>
         <table border="1" class="table table-bordered">
             <thead>
                 <th>No</th>
