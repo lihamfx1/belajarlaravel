@@ -39,7 +39,12 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
+        return redirect(route('login'));
+    }
 
     /**
      * Display the specified resource.
